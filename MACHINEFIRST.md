@@ -30,7 +30,7 @@ subject:
 contract_binding:
   contract_excluded_from_subject: true
   subject_revision_is_ancestor_of_contract_commit: true
-  allowed_delta_paths: ["MACHINEFIRST.md", "machinefirst.txt", "MACHINEFIRST.sha256", "LICENSE-MIT", "LICENSE-APACHE", "examples/python-ml-eval/MACHINEFIRST.md", ".github/workflows/lint.yml", "README.md"]
+  allowed_delta_paths: ["MACHINEFIRST.md", "machinefirst.txt", "MACHINEFIRST.sha256", "LICENSE-MIT", "LICENSE-APACHE", "llms.txt", "AGENTS.md", "schemas/machinefirst-receipt-v0.1.schema.json", "examples/python-ml-eval/MACHINEFIRST.md", ".github/workflows/lint.yml", "README.md"]
   contract_digest_published_in: "repository_commit_history"
   mirror_rule: "web /machinefirst.txt must be byte-identical UTF-8 to repository MACHINEFIRST.md at release_tag"
 persistent_ids:
