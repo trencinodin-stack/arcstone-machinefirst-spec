@@ -1,9 +1,10 @@
 # arcstone-machinefirst-spec
 
-**Normative Specification, Blank Starter Template, JSON Schema, and Strict Conformance Linter for `MACHINEFIRST.md` (`v0.1.1`)**
+**Normative Specification, Blank Starter Template, JSON Schema, and Zero-Dependency Conformance Linter for `MACHINEFIRST.md` (`v0.1.1`)**
 
-[![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
+[![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](LICENSE-MIT)
 [![Spec Version: v0.1.1](https://img.shields.io/badge/spec-v0.1.1-emerald.svg)](SPECIFICATION.md)
+[![Epistemic Map: MACHINEFIRST.md](https://img.shields.io/badge/epistemic--map-MACHINEFIRST.md-slate.svg)](MACHINEFIRST.md)
 
 ---
 
@@ -32,23 +33,33 @@ Rather than replacing or bloating existing conventions, `MACHINEFIRST.md` establ
 arcstone-machinefirst-spec/
 ├── .github/
 │   └── workflows/
-│       └── lint.yml                         # CI validation & conformance test workflow
+│       └── lint.yml                         # CI validation, digest check & mirror enforcement
+├── examples/
+│   └── python-ml-eval/
+│       └── MACHINEFIRST.md                  # Non-Arcstone ML benchmark example (--strict passing)
 ├── schemas/
 │   └── machinefirst-v0.1.1.schema.json      # JSON Schema for parsed frontmatter & sections
 ├── tests/
 │   └── test_conformance.py                  # Unit tests (positive, negative, mirror, strict)
+├── LICENSE-APACHE                           # Apache-2.0 license text
+├── LICENSE-MIT                              # MIT license text
+├── MACHINEFIRST.md                          # Dogfooded epistemic evidence map for this repo
+├── MACHINEFIRST.sha256                      # Pinned SHA-256 digests of normative artifacts
 ├── MACHINEFIRST.template.md                 # Copy-pasteable v0.1.1 starter template
+├── machinefirst.txt                         # Byte-identical UTF-8 mirror of MACHINEFIRST.md
 ├── README.md                                # Overview & 60-second quickstart
 ├── SPECIFICATION.md                         # Normative v0.1.1 grammar & rules
-└── validate_machinefirst.py                 # Strict CLI conformance validator
+└── validate_machinefirst.py                 # Zero-dependency stdlib CLI conformance validator
 ```
 
 ---
 
 ## 60-Second Quickstart
 
-### 1. Run the Conformance Linter & Test Suite Locally
+### 1. Run the Conformance Linter & Test Suite Locally (Zero External Dependencies)
 ```bash
+python validate_machinefirst.py MACHINEFIRST.md --strict --mirror-path machinefirst.txt
+python validate_machinefirst.py examples/python-ml-eval/MACHINEFIRST.md --strict
 python validate_machinefirst.py MACHINEFIRST.template.md
 python -m unittest discover -s tests -v
 ```
@@ -71,4 +82,4 @@ python -m unittest discover -s tests -v
 
 ## License
 
-Dual-licensed under either **MIT** or **Apache-2.0**, at your option.
+Dual-licensed under either **MIT** ([LICENSE-MIT](LICENSE-MIT)) or **Apache-2.0** ([LICENSE-APACHE](LICENSE-APACHE)), at your option.
