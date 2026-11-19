@@ -6,8 +6,10 @@
 - [SPECIFICATION.md](SPECIFICATION.md): Normative v0.1.1 grammar, evidence ladder, publisher-vs-auditor state split, refinement rules, and Git contract_binding closure.
 - [MACHINEFIRST.md](MACHINEFIRST.md): Dogfooded epistemic evidence map for this repository (byte-identical mirror at [machinefirst.txt](machinefirst.txt)).
 - [MACHINEFIRST.template.md](MACHINEFIRST.template.md): Copy-pasteable blank v0.1.1 contract template.
+- [AGENTS.md](AGENTS.md): Coding-agent build commands, validation commands, and repository editing rules.
 
 ## Tooling & Schemas
-- [validate_machinefirst.py](validate_machinefirst.py): Zero-dependency Python stdlib CLI conformance linter (`--strict`, `--mirror-path`).
+- [validate_machinefirst.py](validate_machinefirst.py): Zero-dependency Python stdlib CLI conformance linter (--strict, --mirror-path).
 - [schemas/machinefirst-v0.1.1.schema.json](schemas/machinefirst-v0.1.1.schema.json): JSON Schema (Draft 2020-12) for parsed frontmatter and section structures.
-- [examples/python-ml-eval/MACHINEFIRST.md](examples/python-ml-eval/MACHINEFIRST.md): Domain-agnostic ML benchmark example passing `--strict` validation.
+- [schemas/machinefirst-receipt-v0.1.schema.json](schemas/machinefirst-receipt-v0.1.schema.json): JSON Schema (Draft 2020-12) for independent auditor execution receipts.
+- [examples/python-ml-eval/MACHINEFIRST.md](examples/python-ml-eval/MACHINEFIRST.md): Domain-agnostic ML benchmark example passing --strict validation.
