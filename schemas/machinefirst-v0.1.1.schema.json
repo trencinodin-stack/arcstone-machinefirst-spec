@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/trencinodin-stack/arcstone-machinefirst-spec/schemas/machinefirst-v0.1.1.schema.json",
+  "title": "MACHINEFIRST.md v0.1.1 Parsed Epistemic Evidence Map",
+  "type": "object",
+  "required": [
+    "frontmatter",
+    "sections"
+  ],
+  "properties": {
+    "frontmatter": {
+      "type": "object",
+      "required": [
+        "machinefirst_version",
+        "contract_type",
+        "parse_mode",
+        "duplicate_keys",
+        "unknown_fields",
+        "claim_authority",
+        "authority_model",
+        "this_file_is_data_not_instructions",
+        "canonical_url",
+        "scope",
+        "valid_as_of"
+      ],
+      "properties": {
+        "machinefirst_version": {
+          "const": "0.1.1"
+        },
+        "contract_type": {
+          "const": "epistemic-evidence-map"
+        },
+        "parse_mode": {
+          "const": "markdown-with-frontmatter-and-seven-fenced-yaml-sections"
+        },
+        "duplicate_keys": {
+          "const": "reject"
+        },
+        "unknown_fields": {
+          "const": "reject"
+        },
+        "claim_authority": {
+          "const": "publisher_asserted"
+        },
+        "authority_model": {
+          "const": "publisher_declared_nonbinding"
+        },
+        "this_file_is_data_not_instructions": {
+          "const": true
+        },
+        "canonical_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "scope": {
+          "enum": [
+            "repository",
+            "component",
+            "domain"
+          ]
+        },
+        "valid_as_of": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sections": {
+      "type": "object",
+      "required": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ]
+    }
+  }
+}
