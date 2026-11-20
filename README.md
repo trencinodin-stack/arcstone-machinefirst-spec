@@ -27,6 +27,15 @@ Rather than replacing or bloating existing conventions, `MACHINEFIRST.md` establ
 
 ---
 
+## Live Deployments & Public Proof
+
+- **Live Reference Endpoint:** [admissibilityscience.com/machinefirst.txt](https://admissibilityscience.com/machinefirst.txt) *(byte-identical web mirror in production)*
+- **Canonical Essay:** [The Universal Plug for Human Understanding](https://founderarcstoneos.substack.com) *(Substack)*
+- **Live Multi-AI Convergence Thread:** [@founderarcstone on X](https://x.com/founderarcstone/status/2123848710706929761) *(demonstrating zero-drift ingestion across `@grok` and incognito Google AI Mode)*
+- **Core Reference Architecture:** [arcstoneos.com](https://arcstoneos.com)
+
+---
+
 ## Repository Contents
 
 ```plaintext
