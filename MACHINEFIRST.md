@@ -32,7 +32,7 @@ contract_binding:
   subject_revision_is_ancestor_of_contract_commit: true
   allowed_delta_paths: ["MACHINEFIRST.md", "machinefirst.txt", "MACHINEFIRST.sha256", "LICENSE-MIT", "LICENSE-APACHE", "llms.txt", "AGENTS.md", "SECURITY.md", "schemas/machinefirst-receipt-v0.1.schema.json", "examples/python-ml-eval/MACHINEFIRST.md", ".github/workflows/lint.yml", "README.md"]
   contract_digest_published_in: "repository_commit_history"
-  mirror_rule: "web /machinefirst.txt must be byte-identical UTF-8 to repository MACHINEFIRST.md at release_tag"
+  mirror_rule: "web /machinefirst.txt must be byte-identical UTF-8 to repository MACHINEFIRST.md at contract commit / HEAD"
 persistent_ids:
   doi: []
   orcid: ["0000-0009-0008-4661-1540"]
@@ -48,14 +48,14 @@ normative_artifacts:
   - id: "ART-SPEC-01"
     path: "SPECIFICATION.md"
     hash_algorithm: "sha256"
-    digest: "566115900e27b130d45387c335beb21e8906fc7afcb531e08bd9fcc7531df3fe"
+    digest: "c0071f1244dbf7f5d4b10b018d663ed7a08694c3e25c9136f975d429a55b7960"
     claimed_level: "stated"
     toolchain: "UTF-8 CommonMark + YAML 1.2"
     toolchain_image_digest: "sha256:8f9c2d4e6a1b3c5d7e9f0a2b4c6d8e0f1a3b5c7d9e1f3a5b7c9d1e3f5a7b9c1d"
   - id: "ART-VALIDATOR-01"
     path: "validate_machinefirst.py"
     hash_algorithm: "sha256"
-    digest: "169d763e0c69766766dc2485929e141a6bfd643a7634469cb8559af5f8c1f8f3"
+    digest: "ebe00bcb1132d7aa8e0d227107c701ff56d60cc3aa9d04214b6f117c9f62c5d3"
     claimed_level: "tested"
     toolchain: "Python 3.12 stdlib (zero external dependencies)"
     toolchain_image_digest: "sha256:8f9c2d4e6a1b3c5d7e9f0a2b4c6d8e0f1a3b5c7d9e1f3a5b7c9d1e3f5a7b9c1d"
@@ -71,6 +71,8 @@ non_normative_surfaces:
     kind: "expository"
   - path_or_url: "MACHINEFIRST.template.md"
     kind: "template"
+  - path_or_url: "https://founderarcstoneos.substack.com/p/beyond-social-assurance-part-ii-why"
+    kind: "expository"
 ```
 
 ## 3. Hard Invariants & Claim-to-Evidence Map
