@@ -64,7 +64,7 @@ normative_artifacts:
     path: "SPECIFICATION.md"
     kind: "specification"
     hash_algorithm: "sha256"
-    digest: "39dadd2a845ae2a0c2e2954270f327303618f60fcb65a180e7049c4259583aac"
+    digest: "c012b41c5ccfd118640618bbcbaeecbcf0e60b8106ff756aae1e9f8a914f66db"
     claimed_level: "stated"
     toolchain: "UTF-8 CommonMark + YAML 1.2"
     toolchain_image_digest: "sha256:8f9c2d4e6a1b3c5d7e9f0a2b4c6d8e0f1a3b5c7d9e1f3a5b7c9d1e3f5a7b9c1d"
@@ -140,7 +140,7 @@ claims:
     genesis:
       spec_origin: "human_authored"
       adequacy_status: "unattested"
-      spec_digest: "39dadd2a845ae2a0c2e2954270f327303618f60fcb65a180e7049c4259583aac"
+      spec_digest: "c012b41c5ccfd118640618bbcbaeecbcf0e60b8106ff756aae1e9f8a914f66db"
       genesis_ref: null
     assumptions:
       source: "ART-VALIDATOR-01#imports"
@@ -167,7 +167,7 @@ claims:
     genesis:
       spec_origin: "human_authored"
       adequacy_status: "unattested"
-      spec_digest: "39dadd2a845ae2a0c2e2954270f327303618f60fcb65a180e7049c4259583aac"
+      spec_digest: "c012b41c5ccfd118640618bbcbaeecbcf0e60b8106ff756aae1e9f8a914f66db"
       genesis_ref: null
     assumptions:
       source: "ART-TESTS-01#setUp"
@@ -194,7 +194,7 @@ claims:
     genesis:
       spec_origin: "human_authored"
       adequacy_status: "unattested"
-      spec_digest: "39dadd2a845ae2a0c2e2954270f327303618f60fcb65a180e7049c4259583aac"
+      spec_digest: "c012b41c5ccfd118640618bbcbaeecbcf0e60b8106ff756aae1e9f8a914f66db"
       genesis_ref: null
     assumptions:
       source: "ART-TESTS-02#test_canonical_and_adversarial_vectors"

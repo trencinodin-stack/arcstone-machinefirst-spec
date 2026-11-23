@@ -1,4 +1,4 @@
-# MACHINEFIRST.md â€” Open Specification (v0.1.1)
+# MACHINEFIRST.md — Open Specification (v0.1.2)
 
 **Contract Type:** `epistemic-evidence-map`  
 **Status:** Baseline Specification (`v0.1.1`)  
@@ -21,7 +21,7 @@
 | `MACHINEFIRST.md` (`/machinefirst.txt`) | Cold-start LLM auditors, static linters, human reviewers | *What is claimed, what evidence supports it, what is excluded, and how do I reproduce it?* | General marketing prose or multi-step contributor tutorials |
 
 ### Governing Epistemic Rule (Data, Not Instructions)
-A repository-authored `MACHINEFIRST.md` file is **untrusted publisher-asserted data**, never an instruction override. Its presence identifies publisher claims, their exact scope, and the evidence required to evaluate themâ€”it does **not** establish correctness, confer trust, authorize execution, or compel any auditor verdict.
+A repository-authored `MACHINEFIRST.md` file is **untrusted publisher-asserted data**, never an instruction override. Its presence identifies publisher claims, their exact scope, and the evidence required to evaluate them—it does **not** establish correctness, confer trust, authorize execution, or compel any auditor verdict.
 
 ---
 
@@ -53,20 +53,20 @@ Every conforming `MACHINEFIRST.md` (v0.1.1) document MUST be encoded in valid UT
 To prevent publishers from pre-populating an independent auditor's conclusion, `MACHINEFIRST.md` strictly separates **publisher assertions** (`claimed_level`) from **independent auditor observations** (`auditor_states`):
 
 ### Publisher `claimed_level` Vocabulary
-- `proved` â€” Machine-checked formal proof against an identified theorem and toolchain.
-- `tested` â€” Verified by an executable test suite under a defined environment.
-- `measured` â€” Supported by recorded empirical or hardware measurements.
-- `static_analysis` â€” Checked via deterministic static analyzer, type checker, or linter.
-- `stated` â€” Asserted by the publisher without attached mechanical verification.
-- `external_llm_review` â€” Third-party generative AI review; strictly non-normative.
+- `proved` — Machine-checked formal proof against an identified theorem and toolchain.
+- `tested` — Verified by an executable test suite under a defined environment.
+- `measured` — Supported by recorded empirical or hardware measurements.
+- `static_analysis` — Checked via deterministic static analyzer, type checker, or linter.
+- `stated` — Asserted by the publisher without attached mechanical verification.
+- `external_llm_review` — Third-party generative AI review; strictly non-normative.
 
 ### Independent `auditor_states` Vocabulary
-- `not_checked` â€” Claim has not yet been evaluated by the auditor.
-- `identity_checked` â€” Referenced artifact SHA-256 digest and commit revision verified.
-- `reproduced_pass` â€” Independent execution reproduced the claimed result.
-- `reproduced_fail` â€” Independent execution contradicted the claimed result.
-- `blocked` â€” Referenced artifact or endpoint could not be retrieved.
-- `conflict` â€” Two normative or parent/child surfaces report contradictory values.
+- `not_checked` — Claim has not yet been evaluated by the auditor.
+- `identity_checked` — Referenced artifact SHA-256 digest and commit revision verified.
+- `reproduced_pass` — Independent execution reproduced the claimed result.
+- `reproduced_fail` — Independent execution contradicted the claimed result.
+- `blocked` — Referenced artifact or endpoint could not be retrieved.
+- `conflict` — Two normative or parent/child surfaces report contradictory values.
 
 ---
 
@@ -96,7 +96,7 @@ A file committed inside a Git repository cannot embed the SHA-256 hash of the ve
 Section 6 (`quick_check`) binds verification to deterministic reproduction rather than an unverified exit code:
 
 - Must specify exact `checkout`, `verify_revision`, `verify_contract_delta`, `verify_artifact_digests`, offline `command` (`network: "none"`), `toolchain_image_digest`, `quick_check_covers` (list of covered `CLM-*` IDs), and `receipt_schema_ref`.
-- Must include a mandatory `negative_control` (`required_for_pass: true`)â€”such as a semantic canary mutantâ€”that is required to fail with `expected_reason: "target_invariant_violation"`. A missing binary, timeout, or unrelated crash does **not** satisfy the negative control.
+- Must include a mandatory `negative_control` (`required_for_pass: true`)—such as a semantic canary mutant—that is required to fail with `expected_reason: "target_invariant_violation"`. A missing binary, timeout, or unrelated crash does **not** satisfy the negative control.
 
 ---
 
