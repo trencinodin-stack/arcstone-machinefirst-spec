@@ -3,7 +3,7 @@
 **Normative Specification, Blank Starter Template, JSON Schema, and Zero-Dependency Conformance Linter for `MACHINEFIRST.md` (`v0.1.1`)**
 
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](LICENSE-MIT)
-[![Spec Version: v0.1.1](https://img.shields.io/badge/spec-v0.1.1-emerald.svg)](SPECIFICATION.md)
+[![Spec Version: v0.1.1](https://img.shields.io/badge/spec-v0.1.2-emerald.svg)](SPECIFICATION.md)
 [![Epistemic Map: MACHINEFIRST.md](https://img.shields.io/badge/epistemic--map-MACHINEFIRST.md-slate.svg)](MACHINEFIRST.md)
 
 ---
@@ -47,7 +47,7 @@ arcstone-machinefirst-spec/
 │   └── python-ml-eval/
 │       └── MACHINEFIRST.md                  # Non-Arcstone ML benchmark example (--strict passing)
 ├── schemas/
-│   └── machinefirst-v0.1.1.schema.json      # JSON Schema for parsed frontmatter & sections
+│   └── machinefirst-v0.1.2.schema.json      # JSON Schema for parsed frontmatter & sections
 ├── tests/
 │   └── test_conformance.py                  # Unit tests (positive, negative, mirror, strict)
 ├── LICENSE-APACHE                           # Apache-2.0 license text

@@ -1,0 +1,514 @@
+{
+  "description": "Isolated differential parity and adversarial robustness vectors for validate_manifest",
+  "hand_aligned_with": "GenesisBoundary.EvidencePolicy.admissible_claim",
+  "vectors": [
+    {
+      "id": "VEC-01",
+      "note": "Coq VEC-01: FormalStatement + LLMAutoformalized + Unattested + Pinned Evidence -> true",
+      "normative_artifacts": [
+        {
+          "id": "ART-PROOF-01",
+          "path": "theories/Boundary.v",
+          "kind": "proof",
+          "hash_algorithm": "sha256",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        }
+      ],
+      "claim": {
+        "id": "CLM-101",
+        "statement": "Formal theorem proved from LLM-autoformalized statement without adequacy attestation",
+        "claimed_level": "proved",
+        "claim_scope": "formal_statement",
+        "evidence_ref": { "artifact_id": "ART-PROOF-01" },
+        "genesis": {
+          "spec_origin": "llm_autoformalized",
+          "adequacy_status": "unattested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": null
+        }
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "VEC-02",
+      "note": "Coq VEC-02: IntentAdequacy + HumanAuthored + Unattested -> false",
+      "normative_artifacts": [
+        {
+          "id": "ART-PROOF-01",
+          "path": "theories/Boundary.v",
+          "kind": "proof",
+          "hash_algorithm": "sha256",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        }
+      ],
+      "claim": {
+        "id": "CLM-102",
+        "statement": "Intent adequacy asserted as proved with unattested human-authored spec",
+        "claimed_level": "proved",
+        "claim_scope": "intent_adequacy",
+        "evidence_ref": { "artifact_id": "ART-PROOF-01" },
+        "genesis": {
+          "spec_origin": "human_authored",
+          "adequacy_status": "unattested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": null
+        }
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "VEC-03",
+      "note": "Coq VEC-03: IntentAdequacy + SelfAttested -> false",
+      "normative_artifacts": [
+        {
+          "id": "ART-PROOF-01",
+          "path": "theories/Boundary.v",
+          "kind": "proof",
+          "hash_algorithm": "sha256",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        },
+        {
+          "id": "ART-SELF-01",
+          "path": "docs/self_review.md",
+          "kind": "attestation",
+          "hash_algorithm": "sha256",
+          "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "attestor": "publisher",
+          "attested_spec_digest": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "claim": {
+        "id": "CLM-103",
+        "statement": "Intent adequacy asserted as proved with self-attested spec",
+        "claimed_level": "proved",
+        "claim_scope": "intent_adequacy",
+        "evidence_ref": { "artifact_id": "ART-PROOF-01" },
+        "genesis": {
+          "spec_origin": "human_authored",
+          "adequacy_status": "self_attested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": "ART-SELF-01"
+        }
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "VEC-04",
+      "note": "Coq VEC-04: IntentAdequacy + ThirdPartyAttested + Pinned + Current -> true",
+      "normative_artifacts": [
+        {
+          "id": "ART-PROOF-01",
+          "path": "theories/Boundary.v",
+          "kind": "proof",
+          "hash_algorithm": "sha256",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        },
+        {
+          "id": "ART-AUDIT-CURRENT",
+          "path": "docs/third_party_audit_v2.json",
+          "kind": "attestation",
+          "hash_algorithm": "sha256",
+          "digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "attestor": "independent-lab",
+          "attestor_type": "human_organization",
+          "attested_spec_digest": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "claim": {
+        "id": "CLM-104",
+        "statement": "Intent adequacy satisfies declared third-party attestation policy",
+        "claimed_level": "proved",
+        "claim_scope": "intent_adequacy",
+        "evidence_ref": { "artifact_id": "ART-PROOF-01" },
+        "genesis": {
+          "spec_origin": "llm_autoformalized",
+          "adequacy_status": "third_party_attested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": "ART-AUDIT-CURRENT"
+        }
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "VEC-05",
+      "note": "Coq VEC-05: IntentAdequacy + ThirdPartyAttested + Missing Ref -> false",
+      "normative_artifacts": [
+        {
+          "id": "ART-PROOF-01",
+          "path": "theories/Boundary.v",
+          "kind": "proof",
+          "hash_algorithm": "sha256",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        }
+      ],
+      "claim": {
+        "id": "CLM-105",
+        "statement": "Intent adequacy marked third_party_attested but missing genesis_ref",
+        "claimed_level": "proved",
+        "claim_scope": "intent_adequacy",
+        "evidence_ref": { "artifact_id": "ART-PROOF-01" },
+        "genesis": {
+          "spec_origin": "human_authored",
+          "adequacy_status": "third_party_attested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": null
+        }
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "VEC-06",
+      "note": "Coq VEC-06: IntentAdequacy + ThirdPartyAttested + Unpinned Artifact Digest -> false",
+      "normative_artifacts": [
+        {
+          "id": "ART-PROOF-01",
+          "path": "theories/Boundary.v",
+          "kind": "proof",
+          "hash_algorithm": "sha256",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        },
+        {
+          "id": "ART-AUDIT-UNPINNED",
+          "path": "docs/unpinned_audit.json",
+          "kind": "attestation",
+          "hash_algorithm": "sha256",
+          "digest": "NOT_A_VALID_SHA256",
+          "attestor": "independent-lab",
+          "attested_spec_digest": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "claim": {
+        "id": "CLM-106",
+        "statement": "Intent adequacy referencing an artifact with invalid SHA-256 digest",
+        "claimed_level": "proved",
+        "claim_scope": "intent_adequacy",
+        "evidence_ref": { "artifact_id": "ART-PROOF-01" },
+        "genesis": {
+          "spec_origin": "human_authored",
+          "adequacy_status": "third_party_attested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": "ART-AUDIT-UNPINNED"
+        }
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "VEC-07",
+      "note": "Coq VEC-07: ImplementationRefinement + Unattested + Pinned Evidence -> true",
+      "normative_artifacts": [
+        {
+          "id": "ART-PROOF-01",
+          "path": "theories/Boundary.v",
+          "kind": "proof",
+          "hash_algorithm": "sha256",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        }
+      ],
+      "claim": {
+        "id": "CLM-107",
+        "statement": "Implementation refinement proved relative to formal spec without intent adequacy attestation",
+        "claimed_level": "proved",
+        "claim_scope": "implementation_refinement",
+        "evidence_ref": { "artifact_id": "ART-PROOF-01" },
+        "genesis": {
+          "spec_origin": "llm_autoformalized",
+          "adequacy_status": "unattested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": null
+        }
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "VEC-08",
+      "note": "Coq VEC-08: IntentAdequacy + ThirdPartyAttested + Stale Binding -> false",
+      "normative_artifacts": [
+        {
+          "id": "ART-PROOF-01",
+          "path": "theories/Boundary.v",
+          "kind": "proof",
+          "hash_algorithm": "sha256",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        },
+        {
+          "id": "ART-AUDIT-STALE",
+          "path": "docs/third_party_audit_v1.json",
+          "kind": "attestation",
+          "hash_algorithm": "sha256",
+          "digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+          "attestor": "independent-lab",
+          "attested_spec_digest": "2222222222222222222222222222222222222222222222222222222222222222"
+        }
+      ],
+      "claim": {
+        "id": "CLM-108",
+        "statement": "Intent adequacy referencing valid SHA-256 attestation bound to an older spec revision",
+        "claimed_level": "proved",
+        "claim_scope": "intent_adequacy",
+        "evidence_ref": { "artifact_id": "ART-PROOF-01" },
+        "genesis": {
+          "spec_origin": "human_authored",
+          "adequacy_status": "third_party_attested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": "ART-AUDIT-STALE"
+        }
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "VEC-09",
+      "note": "Python boundary: IntentAdequacy + tested + Unattested -> true",
+      "normative_artifacts": [],
+      "claim": {
+        "id": "CLM-109",
+        "statement": "Intent adequacy claim at tested level with unattested adequacy",
+        "claimed_level": "tested",
+        "claim_scope": "intent_adequacy",
+        "genesis": {
+          "spec_origin": "human_authored",
+          "adequacy_status": "unattested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": null
+        }
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "VEC-10",
+      "note": "Adversarial: Trailing newline in spec_digest rejected by re.fullmatch -> false",
+      "normative_artifacts": [
+        {
+          "id": "ART-PROOF-01",
+          "path": "theories/Boundary.v",
+          "kind": "proof",
+          "hash_algorithm": "sha256",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        }
+      ],
+      "claim": {
+        "id": "CLM-110",
+        "statement": "Digest with trailing newline rejected",
+        "claimed_level": "proved",
+        "claim_scope": "formal_statement",
+        "evidence_ref": { "artifact_id": "ART-PROOF-01" },
+        "genesis": {
+          "spec_origin": "human_authored",
+          "adequacy_status": "unattested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111\n",
+          "genesis_ref": null
+        }
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "VEC-11",
+      "note": "Adversarial: Missing claim_scope in v0.1.2 -> false",
+      "normative_artifacts": [
+        {
+          "id": "ART-PROOF-01",
+          "path": "theories/Boundary.v",
+          "kind": "proof",
+          "hash_algorithm": "sha256",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        }
+      ],
+      "claim": {
+        "id": "CLM-111",
+        "statement": "Proved claim omitting required v0.1.2 claim_scope",
+        "claimed_level": "proved",
+        "evidence_ref": { "artifact_id": "ART-PROOF-01" },
+        "genesis": {
+          "spec_origin": "human_authored",
+          "adequacy_status": "unattested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": null
+        }
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "VEC-12",
+      "note": "Adversarial: Unhashable list in claim_scope returns structured error -> false",
+      "normative_artifacts": [],
+      "claim": {
+        "id": "CLM-112",
+        "statement": "Unhashable type in claim_scope returns error without TypeError",
+        "claimed_level": "proved",
+        "claim_scope": ["formal_statement"],
+        "genesis": {
+          "spec_origin": "human_authored",
+          "adequacy_status": "unattested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": null
+        }
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "VEC-13",
+      "note": "Adversarial: third_party_attested pointing to publisher attestor -> false",
+      "normative_artifacts": [
+        {
+          "id": "ART-PROOF-01",
+          "path": "theories/Boundary.v",
+          "kind": "proof",
+          "hash_algorithm": "sha256",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        },
+        {
+          "id": "ART-SELF-01",
+          "path": "docs/self_review.md",
+          "kind": "attestation",
+          "hash_algorithm": "sha256",
+          "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "attestor": "publisher",
+          "attested_spec_digest": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "claim": {
+        "id": "CLM-113",
+        "statement": "Third-party claim referencing publisher-authored attestation",
+        "claimed_level": "proved",
+        "claim_scope": "intent_adequacy",
+        "evidence_ref": { "artifact_id": "ART-PROOF-01" },
+        "genesis": {
+          "spec_origin": "human_authored",
+          "adequacy_status": "third_party_attested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": "ART-SELF-01"
+        }
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "VEC-14",
+      "note": "Adversarial: third_party_attested pointing to kind='proof' instead of 'attestation' -> false",
+      "normative_artifacts": [
+        {
+          "id": "ART-PROOF-01",
+          "path": "theories/Boundary.v",
+          "kind": "proof",
+          "hash_algorithm": "sha256",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+          "attestor": "independent-lab",
+          "attested_spec_digest": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "claim": {
+        "id": "CLM-114",
+        "statement": "Third-party claim referencing a proof file instead of an attestation record",
+        "claimed_level": "proved",
+        "claim_scope": "intent_adequacy",
+        "evidence_ref": { "artifact_id": "ART-PROOF-01" },
+        "genesis": {
+          "spec_origin": "human_authored",
+          "adequacy_status": "third_party_attested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": "ART-PROOF-01"
+        }
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "VEC-15",
+      "note": "Adversarial: formal_statement with dangling third_party_attested ref -> false",
+      "normative_artifacts": [
+        {
+          "id": "ART-PROOF-01",
+          "path": "theories/Boundary.v",
+          "kind": "proof",
+          "hash_algorithm": "sha256",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        }
+      ],
+      "claim": {
+        "id": "CLM-115",
+        "statement": "Formal statement declaring third-party attestation with nonexistent artifact",
+        "claimed_level": "proved",
+        "claim_scope": "formal_statement",
+        "evidence_ref": { "artifact_id": "ART-PROOF-01" },
+        "genesis": {
+          "spec_origin": "human_authored",
+          "adequacy_status": "third_party_attested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": "ART-NOPE"
+        }
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "VEC-16",
+      "note": "Adversarial: proved claim without evidence_ref blocked by UNLINKED_PROOF_CAP -> false",
+      "normative_artifacts": [],
+      "claim": {
+        "id": "CLM-116",
+        "statement": "Proved formal claim with no evidence_ref artifact",
+        "claimed_level": "proved",
+        "claim_scope": "formal_statement",
+        "genesis": {
+          "spec_origin": "human_authored",
+          "adequacy_status": "unattested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": null
+        }
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "VEC-17",
+      "note": "Adversarial: evidence_ref pointing to nonexistent ART-GHOST -> false",
+      "normative_artifacts": [],
+      "claim": {
+        "id": "CLM-117",
+        "statement": "Claim referencing nonexistent ART-GHOST",
+        "claimed_level": "proved",
+        "claim_scope": "formal_statement",
+        "evidence_ref": { "artifact_id": "ART-GHOST" },
+        "genesis": {
+          "spec_origin": "human_authored",
+          "adequacy_status": "unattested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": null
+        }
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "VEC-18",
+      "note": "Adversarial: third_party_attested with attestor_type='llm_system' rejected -> false",
+      "normative_artifacts": [
+        {
+          "id": "ART-PROOF-01",
+          "path": "theories/Boundary.v",
+          "kind": "proof",
+          "hash_algorithm": "sha256",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        },
+        {
+          "id": "ART-LLM-ATT",
+          "path": "docs/llm_review.json",
+          "kind": "attestation",
+          "hash_algorithm": "sha256",
+          "digest": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "attestor": "external-llm-auditor",
+          "attestor_type": "llm_system",
+          "attested_spec_digest": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "claim": {
+        "id": "CLM-118",
+        "statement": "Third-party intent claim backed only by an LLM system attestor",
+        "claimed_level": "proved",
+        "claim_scope": "intent_adequacy",
+        "evidence_ref": { "artifact_id": "ART-PROOF-01" },
+        "genesis": {
+          "spec_origin": "llm_autoformalized",
+          "adequacy_status": "third_party_attested",
+          "spec_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "genesis_ref": "ART-LLM-ATT"
+        }
+      },
+      "expected_valid": false
+    }
+  ]
+}

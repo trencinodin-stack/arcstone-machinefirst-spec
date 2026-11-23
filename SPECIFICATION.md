@@ -97,3 +97,26 @@ Section 6 (`quick_check`) binds verification to deterministic reproduction rathe
 
 - Must specify exact `checkout`, `verify_revision`, `verify_contract_delta`, `verify_artifact_digests`, offline `command` (`network: "none"`), `toolchain_image_digest`, `quick_check_covers` (list of covered `CLM-*` IDs), and `receipt_schema_ref`.
 - Must include a mandatory `negative_control` (`required_for_pass: true`)â€”such as a semantic canary mutantâ€”that is required to fail with `expected_reason: "target_invariant_violation"`. A missing binary, timeout, or unrelated crash does **not** satisfy the negative control.
+
+---
+
+## v0.1.2 Extension: Specification-Genesis Boundary & Multi-Axis Evidence Policy
+
+Version `v0.1.2` extends `v0.1.1` (while maintaining full backward compatibility with `machinefirst_version: "0.1.1"` manifests in non-strict mode) with claim-scoped provenance (`claim_scope`), genesis attestation tracking (`genesis`), unlinked proof caps, declared binding currency checks (`spec_digest == attested_spec_digest`), and optional `non_normative_formal_backing` references.
+
+### Prior-Art & Terminology Crosswalk
+
+| Operational Term | Domain Meaning in `MACHINEFIRST` | Related Literature & Prior Art |
+| :--- | :--- | :--- |
+| **Epistemic Ingestion Gap** | Cold AI auditors conflating unverified narrative documentation (`README.md`) with verified proof or executable instructions. | Related to Boehm, B. W. (1981), *Software Engineering Economics*, Prentice-Hall (verification vs. validation distinction), and untrusted-input provenance tracking. |
+| **Authority Laundering** | Untrusted prose, summaries, or schema-valid outputs acquiring undeserved credibility or privilege by passing through an authoritative-looking channel. | Analogous to Hardy, N. (1988), "The Confused Deputy: (or why capabilities might have been invented)," *ACM SIGOPS Operating Systems Review*, 22(4), 36–38 (authority confusion), as well as indirect prompt injection and circular citation (citogenesis). |
+| **Verification-Cost Inversion (VCI)** | Front-loading assurance into offline mechanized proofs and pinned digests so repeated runtime or CI checks execute cheaply and deterministically. | Related to Necula, G. C. (1997), "Proof-Carrying Code," *POPL '97*, 106–119 (policy-relative proof checking and amortized verification). |
+| **Specification & Genesis Boundary** | The structural boundary separating informal human/LLM intent from formal specifications; absence of additional global axioms (`Print Assumptions == ∅`) does not automatically establish real-world adequacy. | An instance of Zave, P., & Jackson, M. (1997), "Four Dark Corners of Requirements Engineering," *ACM TOSEM*, 6(1), 1–30 (separating environment domain knowledge $W$, specification $S$, and requirements $R$ in $W, S \vdash R$). |
+| **Schema Fallacy** | Treating deterministic syntactic validation (e.g., JSON Schema) as sufficient authorization to mutate protected state without runtime state-machine mediation. | Related to Saltzer, J. H., & Schroeder, M. D. (1975), "The Protection of Information in Computer Systems," *Proceedings of the IEEE*, 63(9), 1278–1308 (complete mediation), and syntactic vs. semantic validation. |
+
+### Documented Scope Boundaries (`v0.1.2`)
+
+1. **Publisher-Asserted Attestor Independence:** `validate_machinefirst.py` enforces structural rules (`kind == "attestation"`, non-empty `attestor` distinct from `subject.name` and `subject.publisher_aliases`, `attestor_type != "llm_system"`, and `attested_spec_digest == spec_digest`), but cannot independently verify external attestor identity, cryptographic signatures, or actual specification file bytes offline.
+2. **Normalized JSON & Markdown Surfaces:** `validate_machinefirst.py` validates both `MACHINEFIRST.md` (with YAML frontmatter and 7 fenced YAML sections) and canonical normalized JSON manifests, checking byte-for-byte mirror parity via `--mirror-primary` / `--mirror-path`.
+3. **Scope Classification Honesty:** A publisher can label an intent-level claim as `claim_scope: "formal_statement"` to bypass the intent-adequacy cap; `proved` formal-scope claims should carry an explicit `excludes` entry noting that semantic intent adequacy is unassessed.
+4. **Legacy `v0.1.1` Exemption:** Manifests declaring `machinefirst_version: "0.1.1"` pass non-strict validation without `claim_scope` or `genesis` blocks; auditors should treat `proved` claims in un-migrated `v0.1.1` manifests as uncapped unless validated with `--strict`.

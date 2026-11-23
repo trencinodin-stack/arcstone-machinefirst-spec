@@ -11,7 +11,7 @@
   python -m unittest discover -s tests -v
 
 ## Repository Editing Rules
-1. Zero External Dependencies: Keep validate_machinefirst.py 100% Python standard library (>= 3.10). Do not add third-party pip dependencies.
+1. Zero External Dependencies: Keep validate_machinefirst.py 100% Python standard library (>= 3.9). Do not add third-party pip dependencies.
 2. Byte-Identical Mirror Invariant: Whenever MACHINEFIRST.md is edited, immediately copy its exact UTF-8 bytes to machinefirst.txt so --mirror-path verification passes.
 3. Separation of Concerns: Do not duplicate claim values, SHA-256 digests, or verification verdicts inside README.md, llms.txt, or AGENTS.md. Keep all authoritative evidence bindings exclusively in MACHINEFIRST.md.
-4. Update Checksums on Normative Edits: If SPECIFICATION.md, validate_machinefirst.py, or tests/test_conformance.py changes, update MACHINEFIRST.sha256 and the corresponding digests in MACHINEFIRST.md.
+4. Update Checksums on Normative Edits: If SPECIFICATION.md, validate_machinefirst.py, or tests/test_conformance.py, tests/test_genesis_cap.py, tests/fixtures/genesis_vectors.json, or schemas/machinefirst-v0.1.2.schema.json changes, update MACHINEFIRST.sha256 and the corresponding digests in MACHINEFIRST.md.

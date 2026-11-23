@@ -1,8 +1,9 @@
-name: Validate MACHINEFIRST v0.1.1 Specification & Linter
+name: Validate MACHINEFIRST v0.1.2 Specification & Linter
 
 on:
   push:
     branches: [main]
+    tags: ["v*"]
   pull_request:
     branches: [main]
 
@@ -30,5 +31,5 @@ jobs:
       - name: Validate starter template (structural mode)
         run: python validate_machinefirst.py MACHINEFIRST.template.md
 
-      - name: Run conformance test suite
+      - name: Run conformance and 18-vector genesis-cap test suite
         run: python -m unittest discover -s tests -v

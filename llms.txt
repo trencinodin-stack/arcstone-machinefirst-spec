@@ -1,15 +1,16 @@
 # arcstone-machinefirst-spec
 
-> Normative specification, zero-dependency conformance validator, JSON schemas, and starter template for MACHINEFIRST.md (v0.1.1) — an open convention for verifiable repository and web-root epistemic evidence maps.
+> Normative specification, zero-dependency conformance validator, JSON schemas, and starter template for MACHINEFIRST.md (v0.1.2) — an open convention for verifiable repository and web-root epistemic evidence maps.
 
 ## Core Specification & Contracts
-- [SPECIFICATION.md](SPECIFICATION.md): Normative v0.1.1 grammar, evidence ladder, publisher-vs-auditor state split, refinement rules, and Git contract_binding closure.
+- [SPECIFICATION.md](SPECIFICATION.md): Normative v0.1.2 grammar, evidence ladder, publisher-vs-auditor state split, claim-scoped genesis policy, refinement rules, and Git contract_binding closure.
 - [MACHINEFIRST.md](MACHINEFIRST.md): Dogfooded epistemic evidence map for this repository (byte-identical mirror at [machinefirst.txt](machinefirst.txt)).
-- [MACHINEFIRST.template.md](MACHINEFIRST.template.md): Copy-pasteable blank v0.1.1 contract template.
+- [MACHINEFIRST.template.md](MACHINEFIRST.template.md): Copy-pasteable blank contract template.
 - [AGENTS.md](AGENTS.md): Coding-agent build commands, validation commands, and repository editing rules.
 
 ## Tooling & Schemas
-- [validate_machinefirst.py](validate_machinefirst.py): Zero-dependency Python stdlib CLI conformance linter (--strict, --mirror-path).
-- [schemas/machinefirst-v0.1.1.schema.json](schemas/machinefirst-v0.1.1.schema.json): JSON Schema (Draft 2020-12) for parsed frontmatter and section structures.
+- [validate_machinefirst.py](validate_machinefirst.py): Zero-dependency Python 3.9+ stdlib CLI conformance & genesis-cap validator (--strict, --mirror-path).
+- [schemas/machinefirst-v0.1.2.schema.json](schemas/machinefirst-v0.1.2.schema.json): JSON Schema (Draft 2020-12) for normalized v0.1.2 manifests.
+- [schemas/machinefirst-v0.1.1.schema.json](schemas/machinefirst-v0.1.1.schema.json): Legacy v0.1.1 JSON Schema (Draft 2020-12).
 - [schemas/machinefirst-receipt-v0.1.schema.json](schemas/machinefirst-receipt-v0.1.schema.json): JSON Schema (Draft 2020-12) for independent auditor execution receipts.
 - [examples/python-ml-eval/MACHINEFIRST.md](examples/python-ml-eval/MACHINEFIRST.md): Domain-agnostic ML benchmark example passing --strict validation.

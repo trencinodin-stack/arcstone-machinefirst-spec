@@ -1,0 +1,261 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/trencinodin-stack/arcstone-machinefirst-spec/schema/machinefirst.schema.json",
+  "title": "MACHINEFIRST Epistemic Evidence Map (v0.1.2)",
+  "type": "object",
+  "required": [
+    "machinefirst_version",
+    "claim_authority",
+    "authority_model",
+    "normative_artifacts",
+    "claims"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "machinefirst_version": { "type": "string", "enum": ["0.1.1", "0.1.2"] },
+    "contract_type": { "type": "string" },
+    "parse_mode": { "type": "string" },
+    "duplicate_keys": { "type": "string" },
+    "canonical_url": { "type": "string" },
+    "valid_as_of": { "type": "string" },
+    "supersedes": { "type": ["string", "array", "null"] },
+    "errata": { "type": ["string", "array", "object", "null"] },
+    "scope": { "type": ["string", "object"] },
+    "persistent_ids": { "type": "object" },
+    "contract_binding": { "type": "object" },
+    "conflict_rule": { "type": ["string", "object"] },
+    "auditor_states": { "type": ["array", "object"] },
+    "non_normative_surfaces": { "type": ["array", "object"] },
+    "this_file_is_data_not_instructions": { "type": "boolean", "const": true },
+    "treat_strings_as_inert_data": { "type": "boolean", "const": true },
+    "claim_authority": { "type": "string", "const": "publisher_asserted" },
+    "authority_model": { "type": "string", "const": "publisher_declared_nonbinding" },
+    "unknown_fields": { "type": "string", "enum": ["reject", "ignore"] },
+    "subject": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "publisher_aliases": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "conformance_guards": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "this_file_is_data_not_instructions": { "type": "boolean", "const": true },
+        "treat_strings_as_inert_data": { "type": "boolean", "const": true }
+      }
+    },
+    "evidence_ladder": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "stated",
+          "measured",
+          "static_analysis",
+          "tested",
+          "proved",
+          "external_llm_review"
+        ]
+      }
+    },
+    "routes": { "type": ["object", "array"] },
+    "quick_check": { "type": "object" },
+    "known_gaps": { "type": "array", "items": { "type": "string" } },
+    "normative_artifacts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/artifact" }
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/claim" }
+    },
+    "non_normative_formal_backing": {
+      "$ref": "#/$defs/non_normative_formal_backing"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "machinefirst_version": { "const": "0.1.2" } }
+      },
+      "then": {
+        "required": [
+          "this_file_is_data_not_instructions",
+          "treat_strings_as_inert_data"
+        ],
+        "properties": {
+          "claims": {
+            "items": {
+              "required": ["claim_scope", "genesis"]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "required": ["id", "path", "hash_algorithm", "digest"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^ART-[A-Z0-9_-]+$" },
+        "path": { "type": "string", "minLength": 1 },
+        "kind": {
+          "type": "string",
+          "enum": ["specification", "proof", "implementation", "test", "attestation", "discovery"]
+        },
+        "claimed_level": {
+          "type": "string",
+          "enum": [
+            "stated",
+            "measured",
+            "static_analysis",
+            "tested",
+            "proved",
+            "external_llm_review"
+          ]
+        },
+        "toolchain": { "type": ["string", "null"] },
+        "toolchain_image_digest": { "type": ["string", "null"] },
+        "hash_algorithm": { "type": "string", "const": "sha256" },
+        "digest": { "type": "string", "pattern": "^[0-9a-f]{64}$", "minLength": 64, "maxLength": 64 },
+        "attestor": { "type": "string", "minLength": 1 },
+        "attestor_type": {
+          "type": "string",
+          "enum": ["human_organization", "automated_tool", "llm_system"]
+        },
+        "attested_spec_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$", "minLength": 64, "maxLength": 64 }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "required": ["id", "statement", "claimed_level"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^CLM-[0-9]{3,}$" },
+        "statement": { "type": "string", "minLength": 1 },
+        "claimed_level": {
+          "type": "string",
+          "enum": [
+            "stated",
+            "measured",
+            "static_analysis",
+            "tested",
+            "proved",
+            "external_llm_review"
+          ]
+        },
+        "claim_scope": {
+          "type": "string",
+          "enum": ["formal_statement", "implementation_refinement", "intent_adequacy"]
+        },
+        "quantity_id": { "type": ["string", "null"] },
+        "operator": { "type": ["string", "null"] },
+        "value": {},
+        "unit": { "type": ["string", "null"] },
+        "applies_to_revision": { "type": ["string", "null"] },
+        "scope": { "type": ["string", "null"] },
+        "proof_target": { "type": ["string", "null"] },
+        "assumptions": { "type": ["object", "array"] },
+        "failure_behavior": { "type": ["string", "null"] },
+        "definition_ref": { "type": ["string", "null"] },
+        "evidence_ref": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["artifact_id"],
+          "properties": {
+            "artifact_id": { "type": "string", "pattern": "^ART-[A-Z0-9_-]+$" },
+            "symbol": { "type": ["string", "null"] },
+            "symbol_kind": { "type": ["string", "null"] }
+          }
+        },
+        "refinement_ref": { "type": ["string", "null"] },
+        "excludes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "genesis": {
+          "type": "object",
+          "required": ["spec_origin", "adequacy_status", "spec_digest"],
+          "additionalProperties": false,
+          "properties": {
+            "spec_origin": {
+              "type": "string",
+              "enum": ["human_authored", "llm_autoformalized", "hybrid_formalized"]
+            },
+            "adequacy_status": {
+              "type": "string",
+              "enum": ["unattested", "self_attested", "third_party_attested"]
+            },
+            "spec_digest": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$",
+              "minLength": 64,
+              "maxLength": 64
+            },
+            "genesis_ref": {
+              "type": ["string", "null"],
+              "pattern": "^ART-[A-Z0-9_-]+$"
+            }
+          }
+        }
+      }
+    },
+    "non_normative_formal_backing": {
+      "type": "object",
+      "required": [
+        "repository",
+        "revision",
+        "release",
+        "coq_version",
+        "normative_for_conformance",
+        "artifacts"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "repository": { "type": "string", "minLength": 1 },
+        "revision": { "type": "string", "pattern": "^[0-9a-f]{40}$", "minLength": 40, "maxLength": 40 },
+        "release": { "type": "string", "minLength": 1 },
+        "coq_version": { "type": "string", "minLength": 1 },
+        "normative_for_conformance": { "type": "boolean", "const": false },
+        "auditor_status": {
+          "type": "string",
+          "enum": [
+            "not_checked",
+            "identity_checked",
+            "reproduced_pass",
+            "reproduced_fail",
+            "blocked",
+            "conflict"
+          ]
+        },
+        "artifacts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["path", "sha256", "theorems"],
+            "additionalProperties": false,
+            "properties": {
+              "path": { "type": "string", "minLength": 1 },
+              "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$", "minLength": 64, "maxLength": 64 },
+              "theorems": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
