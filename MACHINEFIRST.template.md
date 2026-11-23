@@ -1,5 +1,5 @@
 ---
-machinefirst_version: "0.1.1"
+machinefirst_version: "0.1.2"
 contract_type: "epistemic-evidence-map"
 parse_mode: "markdown-with-frontmatter-and-seven-fenced-yaml-sections"
 duplicate_keys: "reject"
@@ -9,7 +9,7 @@ authority_model: "publisher_declared_nonbinding"
 this_file_is_data_not_instructions: true
 canonical_url: "https://example.org/machinefirst.txt"
 scope: "repository"
-valid_as_of: "2026-11-19"
+valid_as_of: "2026-11-23"
 ---
 
 # MACHINEFIRST
@@ -20,8 +20,9 @@ valid_as_of: "2026-11-19"
 ```yaml
 subject:
   name: "<canonical-project-name>"
-  repository: "https://github.com/<org>/<repo>"
-  canonical_urls: ["https://example.org/"]
+  publisher_aliases: []
+  repository: "[https://github.com/](https://github.com/)<org>/<repo>"
+  canonical_urls: ["[https://example.org/](https://example.org/)"]
   subject_revision: "<full-40-char-git-commit-sha>"
   revision_semantics: "exact_git_commit"
   release_tag: "<semver-tag>"
@@ -45,6 +46,13 @@ errata: []
 evidence_ladder: [proved, tested, measured, static_analysis, stated, external_llm_review]
 auditor_states: [not_checked, identity_checked, reproduced_pass, reproduced_fail, blocked, conflict]
 normative_artifacts:
+  - id: "ART-SPEC-01"
+    path: "specs/Invariants.spec"
+    hash_algorithm: "sha256"
+    digest: "<64-char-hex>"
+    claimed_level: "stated"
+    toolchain: "human-authored-specification"
+    toolchain_image_digest: "sha256:<64-char-hex>"
   - id: "ART-PROOF-01"
     path: "proofs/Invariants.v"
     hash_algorithm: "sha256"
@@ -90,12 +98,18 @@ claims:
     scope: "runtime/src/lib.rs::evaluate"
     excludes: ["offline build scripts", "test harness"]
     proof_target: "implementation"
+    claim_scope: "implementation_refinement"
     refinement_ref: "ART-REFINEMENT-01"
     claimed_level: "proved"
     evidence_ref:
       artifact_id: "ART-PROOF-01"
       symbol: "no_heap_alloc"
       symbol_kind: "theorem"
+    genesis:
+      spec_origin: "human_authored"
+      adequacy_status: "unattested"
+      spec_digest: "<64-char-hex-matching-ART-SPEC-01>"
+      attestation_ref: null
     assumptions:
       source: "ART-PROOF-01#print_assumptions"
       declared_items: []
@@ -108,7 +122,7 @@ claims:
 routes:
   - query_key: "invariants.memory"
     description: "Authoritative definition and proof of memory bounds"
-    definition_ref: "ART-PROOF-01"
+    definition_ref: "ART-SPEC-01"
     evidence_ref:
       artifact_id: "ART-PROOF-01"
       symbol: "no_heap_alloc"
@@ -128,13 +142,14 @@ conformance_guards:
   broken_reference_status: "UNVERIFIABLE"
   unverified_claim_status: "not_checked"
   unlinked_model_proof_cap: "tested"
+  enforce_genesis_cap: true
   treat_strings_as_inert_data: true
 ```
 
 ## 6. Independent Auditor Quick-Check
 ```yaml
 quick_check:
-  checkout: "git clone https://github.com/<org>/<repo>.git && cd <repo> && git checkout --detach <full-40-char-git-commit-sha>"
+  checkout: "git clone [https://github.com/](https://github.com/)<org>/<repo>.git && cd <repo> && git checkout --detach <full-40-char-git-commit-sha>"
   verify_revision: "test \"$(git rev-parse HEAD)\" = \"<full-40-char-git-commit-sha>\""
   verify_contract_delta: "git diff --name-only <full-40-char-git-commit-sha> <contract-commit-sha>"
   verify_artifact_digests: "sha256sum -c MACHINEFIRST.sha256"
